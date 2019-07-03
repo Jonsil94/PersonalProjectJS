@@ -1,0 +1,205 @@
+	<!doctype html>
+	<html>
+	  <head>
+	    <title>Quiet-Lake-23602</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+	    <style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			body { 
+				font-family: 'Open Sans', sans-serif;
+				font-size: : 1.2em; 
+				background-color:#636466;
+				color: white; }
+			
+			form { background: #636466;  position: fixed; bottom: 0; min-width: 100%;display: block;}
+			
+			form input { border: 0; padding:15.9px; min-height:100% ; width: 80%; margin-right: 0%; 
+				display:inline-block;float: left;}
+			
+			form button { 
+				width: 20%; 
+				background: #ED4242; 
+				top: -1px;
+				border: 0; 
+				min-height: 47px;
+				color: white; 
+				font-weight: 800;
+				display:inline-block;
+				float: right;
+			}
+			
+
+
+loadlast {
+	display: none;
+}
+
+
+button:hover,
+button:focus {
+    background:grey;
+}
+
+button:focus {
+    outline: none;
+    outline-offset: -4px;
+}
+
+
+
+
+			#messages { list-style-type: none; margin: 0; padding: 0;padding-bottom: 50px; color: white;}
+			#messages li { padding: 5px 10px; }
+			#messages li:nth-child(odd) { background: grey; }
+
+
+			
+			#myVideo {
+			position: absolute;
+			height: auto;
+			width: auto;
+			min-height: 100%;
+			min-width: 100%;
+			left: 50%;
+			top: 50%;
+			-webkit-transform: translate3d(-50%, -50%, 0);
+			transform: translate3d(-50%, -50%, 0);
+			z-index: 99;
+			}
+
+			.title{
+			margin: 0 auto;
+			color: white;
+			font-size: 1.2em;
+			position: absolute;
+			left: 50%;
+			bottom: 0%;
+			font-weight: 800;
+			font-family: 'Open Sans', sans-serif;
+			padding: 1em 2em;
+			transform: translate(-50%, -50%);
+			z-index: 100;
+			}
+
+			.title:hover {
+			background-color: #ED4242;
+			}
+
+
+
+
+
+
+			.quietLake{
+			margin: 0 auto;
+			color: white;
+			font-size: .75em;
+			position: absolute;
+			left: 50%;
+		
+			font-weight: 800;
+			font-family: 'Open Sans', sans-serif;
+			padding: 1em 2em;
+			transform: translate(-50%, -50%);
+			z-index: 100;
+			color: black;
+			background-color: white;
+			top:50%; 
+			text-align: center;
+
+
+			}
+
+
+
+
+			a{
+				font-weight: 800;
+			font-family: 'Open Sans', sans-serif;
+			color: #494949;
+			text-decoration: none;
+			}
+			a:hover{
+				color: #ED4242;
+			}
+
+	    </style>
+
+	    <script src="/socket.io/socket.io.js"></script>
+	    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	    <script>
+	      $(function () {
+	        var socket = io('https://quiet-lake-23602.herokuapp.com');
+	        $('form').submit(function(e){
+	          e.preventDefault(); // prevents page reloading
+	          socket.emit('chat message', $('#m').val());
+	          $('#m').val('');
+	          //window.scrollTo(0,document.body.scrollHeight);
+	          scrollToBottom();
+	          return false;
+	        });
+	        socket.on('chat message', function(msg){
+	          $('#messages').append($('<li>').text(msg));
+	          //
+	          scrollToBottom();
+	        });
+	  });
+
+	      function scrollToBottom() {
+			//window.scrollTo(0,document.body.scrollHeight);
+			window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+	}
+
+
+	
+
+
+
+	    </script>
+
+
+
+
+
+	  </head>
+	  <body>
+
+
+		<intro>
+
+			<video autoplay muted loop id="myVideo">
+			  <source src="http://jonathan-silveira.com/img/derivative/Background_derivative.mp4" type="video/mp4">
+			  Your browser does not support HTML5 video.
+			</video>    
+	<p class='quietLake' style=""> QUIET-LAKE-23602</p>
+			<p class="title"> ENTER </p>
+		</intro>
+
+
+		<loadlast>
+	    <ul id="messages">
+	    	
+	    	<li style="padding: 50px; color: #494949; background-color: #55DDE0;">This is <a> quiet-lake-23602 </a>!<br>
+
+This website is part of an interactive installation that uses conversations to generate ecosystems. When you converse in this chat room, the statements you make create organisms in the installation. Each statement is analyzed for particular emotions using a lexicon created by the <a href="http://sentiment.nrc.ca/lexicons-for-research/"> National Research Council of Canada</a>. The sum of the emotions present in each statement is used to assign unique behaviours and appearances for the organisms created. Additional beings are created depending on the number of individuals currently on this website. 
+For more information and process check out this <a href="https://jonathansilveiranotes.tumblr.com/">link!</a>
+</li>
+
+	    </ul>
+	    <form action="">
+	      <input id="m" autocomplete="off" /><button>SEND</button>
+	    </form>
+	 </loadlast>
+
+
+
+<script>
+$('.title').click(function() {
+  $( 'intro' ).fadeOut( 3000);
+  $( 'loadlast' ).fadeIn( 3000);
+});
+</script>
+
+	  </body>
+	</html>
